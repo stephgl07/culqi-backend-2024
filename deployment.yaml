@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: culqitechtest
+  labels:
+    app: culqitechtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: culqitechtest
+  template:
+    metadata:
+      labels:
+        app: culqitechtest
+    spec:
+      containers:
+        - name: culqitechtest
+          image: 211125530365.dkr.ecr.us-east-2.amazonaws.com/culqitechtest:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "development"
+            - name: PORT
+              value: "8080"
+            - name: JWT_SECRET
+              value: "culqiTechTest"
+            - name: JWT_EXPIRATION_TIME
+              value: "1m"
+            - name: REDIS_HOST
+              value: "redis"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_DEFAULT_TTL
+              value: "150"
