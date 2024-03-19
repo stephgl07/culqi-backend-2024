@@ -1,23 +1,26 @@
-# Nest.js Project: GET COMMS
+# Nest.js Project: CULQI TOKENIZER
 
 This is a [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 API component for technical test for CULQI company.
 
+
 ## ✨ About this Project
+
+This API exposes 2 endpoints (that can be visualize on swagger) to obtain a token by sending a card complete information body saving it on Redis, and the other one obtains partial information of the card by sending the generated token.
+
+## Architecture & Configuration Details
 
 This project is structured around best practices in software architecture and design, aimed at ensuring scalability, maintainability, and ease of deployment. Here are the key practices adopted:
 
 ### Clean Architecture
 
-Adhering to the principles of Clean Architecture, the codebase is organized into layers with clear responsibilities:
-
-- `entities` contain business logic and models.
-- `use-cases` host the application-specific business rules.
-- `interfaces` handlers different implementations using dependency injection.
-- `controllers` manage the incoming requests and delegate to appropriate services.
-
+Adhering to the principles of Clean Architecture, the codebase is organized into layers with clear responsibilities.
 This separation of concerns facilitates independent development and testing of each layer, promoting a more robust and testable codebase.
+
+### Vertical Slices
+
+Adopting partially this architecture, principal components of a use case can be accessed on a same context without needed to acceed different classes or folder to avoid losing the principal concern.
 
 ### Modular Design
 
@@ -34,7 +37,6 @@ By adopting these practices, this project maintains a high standard of code qual
 ## 🚀 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 
 ### 📋 Prerequisites
 
@@ -75,9 +77,9 @@ Running locally
 npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 
-Open [http://localhost:3000/api](http://localhost:3000/api) to test directly using Swagger.
+Open [http://localhost:8080/api](http://localhost:8080/api) to test directly using Swagger.
 
 ## Tests
 
@@ -90,8 +92,7 @@ npm test
 ## 🏗️ CI/CD
 
 Pipeline is configured on the root path of the repository. It is executed when making a push to the "main" branch.
-
-You can test the deployment result here! => [https://project-getcomms-api.azurewebsites.net/api](https://project-getcomms-api.azurewebsites.net/api)
+The main pipeline executes the unit test and then starts the deployment to AWS EKS by creating and pushing an image to AWS ECR first.
 
 ## 🛠️ Built With
 
